@@ -9,10 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="EntityFrameworkCore.CreatedUpdatedDate" Version="8.0.0" />
+    <PackageReference Include="Humanizer" Version="2.14.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.6.0" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Products\Application\Internal\OutboundServices\ACL\" />
+    <Folder Include="Products\Domain\Model\Entities\" />
     <Folder Include="Publishing\Application\Internal\CommandServices\" />
     <Folder Include="Publishing\Application\Internal\QueryServices\" />
     <Folder Include="Publishing\Application\Internal\OutboundServices\ACL\" />
@@ -26,10 +38,6 @@
     <Folder Include="Publishing\Infrastructure\Persistence\EFC\Repositories\" />
     <Folder Include="Publishing\Interfaces\REST\Transform\" />
     <Folder Include="Publishing\Interfaces\REST\Resources\" />
-    <Folder Include="Shared\Domain\Repositories\" />
-    <Folder Include="Shared\Infrastructure\Persistence\EFC\Configuration\Extensions\" />
-    <Folder Include="Shared\Infrastructure\Persistence\EFC\Repositories\" />
-    <Folder Include="Shared\Interfaces\ASP\Configuration\Extensions\" />
   </ItemGroup>
 
 </Project>
