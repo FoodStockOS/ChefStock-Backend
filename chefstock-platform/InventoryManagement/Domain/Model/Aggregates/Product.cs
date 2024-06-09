@@ -1,12 +1,13 @@
-﻿using chefstock_platform.Products.Domain.Model.Commands;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Entities;
+using chefstock_platform.Products.Domain.Model.Commands;
 
-namespace chefstock_platform.Products.Domain.Model.Aggregates;
+namespace chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 
 public class Product
 {
     public Product()
     {
-        // Constructor sin parámetros
+
     }
 
     public Product(string? name, int stock, decimal price, DateTime dueDate, ICollection<Inventory>? inventories)
@@ -39,6 +40,6 @@ public class Product
     public decimal Price { get; set; }
     public DateTime DueDate { get; set; }
     
-    public ICollection<Inventory>? Inventories { get; set; } // Esta es la propiedad de navegación para la relación con la clase Inventory
+    public ICollection<Inventory>? Inventories { get; set; } 
 
 }

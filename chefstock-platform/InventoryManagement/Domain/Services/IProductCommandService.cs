@@ -1,7 +1,7 @@
-﻿using chefstock_platform.Products.Domain.Model.Aggregates;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 using chefstock_platform.Products.Domain.Model.Commands;
 
-namespace chefstock_platform.Products.Domain.Services;
+namespace chefstock_platform.InventoryManagement.Domain.Services;
 
 public interface IProductCommandService
 {
