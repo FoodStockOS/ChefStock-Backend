@@ -1,6 +1,6 @@
-﻿using chefstock_platform.Products.Domain.Model.Aggregates;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 
-namespace chefstock_platform.Products.Interfaces.ACL;
+namespace chefstock_platform.InventoryManagement.Interfaces.ACL;
 
 public interface IProductsContextFacade
 {

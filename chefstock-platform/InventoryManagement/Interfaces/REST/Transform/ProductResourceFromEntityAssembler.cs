@@ -1,4 +1,4 @@
-﻿using chefstock_platform.Products.Domain.Model.Aggregates;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 using chefstock_platform.Products.Interfaces.REST.Resources;
 
 namespace chefstock_platform.Products.Interfaces.REST.Transform;

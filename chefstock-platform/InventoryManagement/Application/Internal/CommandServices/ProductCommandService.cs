@@ -1,10 +1,10 @@
-﻿using chefstock_platform.Products.Domain.Model.Aggregates;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
+using chefstock_platform.InventoryManagement.Domain.Repositories;
+using chefstock_platform.InventoryManagement.Domain.Services;
 using chefstock_platform.Products.Domain.Model.Commands;
-using chefstock_platform.Products.Domain.Repositories;
-using chefstock_platform.Products.Domain.Services;
 using chefstock_platform.Shared.Domain.Repositories;
 
-namespace chefstock_platform.Products.Application.Internal.CommandServices;
+namespace chefstock_platform.InventoryManagement.Application.Internal.CommandServices;
 
     public class ProductCommandService(IProductRepository productRepository, IUnitOfWork unitOfWork) : IProductCommandService
     {

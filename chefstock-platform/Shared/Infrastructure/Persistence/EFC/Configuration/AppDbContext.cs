@@ -1,4 +1,5 @@
-﻿using chefstock_platform.Products.Domain.Model.Aggregates;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
+using chefstock_platform.InventoryManagement.Domain.Model.Entities;
 using chefstock_platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
