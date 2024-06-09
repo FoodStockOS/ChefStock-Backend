@@ -5,6 +5,10 @@ namespace chefstock_platform.RestaurantManagement.Domain.Model.Entities;
 
 public class Employee
 {
+    public Employee()
+    {
+
+    }
     public Employee(CreateEmployeeCommand command)
     {
         FirstName = command.FirstName;

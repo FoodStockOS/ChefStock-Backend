@@ -62,5 +62,8 @@ public class Product
 
     public int SupplierId { get; set; }
     public Supplier? Supplier { get; set; }
+    
+    public ICollection<Category> Categories { get; set; } = new List<Category>();
+    public ICollection<Supplier> Suppliers { get; set; } = new List<Supplier>();
 
 }

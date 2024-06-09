@@ -1,7 +1,7 @@
 ﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 using chefstock_platform.InventoryManagement.Domain.Model.Commands;
+using chefstock_platform.InventoryManagement.Domain.Model.Queries;
 using chefstock_platform.InventoryManagement.Domain.Services;
-using chefstock_platform.Products.Domain.Model.Queries;
 
 namespace chefstock_platform.InventoryManagement.Interfaces.ACL.Services;
 
