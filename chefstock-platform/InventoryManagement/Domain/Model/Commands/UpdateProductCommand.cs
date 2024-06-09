@@ -1,3 +1,3 @@
-﻿namespace chefstock_platform.Products.Domain.Model.Commands;
+﻿namespace chefstock_platform.InventoryManagement.Domain.Model.Commands;
 
-public record UpdateProductCommand(int Id, string Name, int Stock, decimal Price, DateTime DueDate);
+public record UpdateProductCommand(int Id, string? Name, int Stock, decimal Price,string Description ,DateTime DueDate,int CategoryId, int SupplierId);

@@ -1,6 +1,6 @@
 ﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
+using chefstock_platform.InventoryManagement.Domain.Model.Commands;
 using chefstock_platform.InventoryManagement.Domain.Services;
-using chefstock_platform.Products.Domain.Model.Commands;
 using chefstock_platform.Products.Domain.Model.Queries;
 
 namespace chefstock_platform.InventoryManagement.Interfaces.ACL.Services;
@@ -10,9 +10,9 @@ public class ProductsContextFacade(
     IProductQueryService productQueryService)
     : IProductsContextFacade
 {
-    public async Task<int> CreateProduct(string name, int stock, decimal price, DateTime dueDate)
+    public async Task<int> CreateProduct(string name, int stock, decimal price, string description, DateTime dueDate, int categoryId, int supplierId)
     {
-        var createProductCommand = new CreateProductCommand(name, stock, price, dueDate);
+        var createProductCommand = new CreateProductCommand(name, stock, price, description, dueDate, categoryId, supplierId);
         var product = await productCommandService.Handle(createProductCommand);
         return product?.Id ?? 0;
     }
@@ -29,12 +29,11 @@ public class ProductsContextFacade(
         return await productQueryService.Handle(getAllProductsQuery);
     }
 
-    public async Task UpdateProduct(int id, string name, int stock, decimal price, DateTime dueDate)
+    public async Task UpdateProduct(int id, string name, int stock, decimal price, string description, DateTime dueDate, int categoryId, int supplierId)
     {
-        var updateProductCommand = new UpdateProductCommand(id, name, stock, price, dueDate);
+        var updateProductCommand = new UpdateProductCommand(id, name, stock, price, description, dueDate, categoryId, supplierId);
         await productCommandService.Handle(updateProductCommand);
     }
-
     public async Task DeleteProduct(int id)
     {
         var deleteProductCommand = new DeleteProductCommand(id);

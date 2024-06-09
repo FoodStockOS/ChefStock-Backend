@@ -23,7 +23,18 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Product>().HasKey(p => p.Id);
         builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(50);
+        
+        // Category and Supplier Relationships
+        builder.Entity<Product>()
+            .HasOne(p => p.Category)
+            .WithMany()
+            .HasForeignKey(p => p.CategoryId);
 
+        builder.Entity<Product>()
+            .HasOne(p => p.Supplier)
+            .WithMany()
+            .HasForeignKey(p => p.SupplierId);
+        
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
         
