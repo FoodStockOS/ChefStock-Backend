@@ -27,7 +27,7 @@ public class SupplierCommandService(ISupplierRepository supplierRepository, IUni
 
     public async Task<Supplier?> Handle(UpdateSupplierCommand command)
     {
-        var supplier = await supplierRepository.GetByIdAsync(command.Id);
+        var supplier = await supplierRepository.GetByIdAsync(command.SupplierId);
         if (supplier != null)
         {
             supplier.Update(command);
@@ -37,23 +37,23 @@ public class SupplierCommandService(ISupplierRepository supplierRepository, IUni
         }
         else
         {
-            Console.WriteLine($"Supplier with id {command.Id} not found");
-            throw new Exception($"Supplier with id {command.Id} not found");
+            Console.WriteLine($"Supplier with id {command.SupplierId} not found");
+            throw new Exception($"Supplier with id {command.SupplierId} not found");
         }
     }
 
     public async Task Handle(DeleteSupplierCommand command)
     {
-        var supplier = await supplierRepository.GetByIdAsync(command.Id);
+        var supplier = await supplierRepository.GetByIdAsync(command.SupplierId);
         if (supplier != null)
         {
-            await supplierRepository.DeleteAsync(supplier.Id);
+            await supplierRepository.DeleteAsync(supplier.SupplierId);
             await unitOfWork.CompleteAsync();
         }
         else
         {
-            Console.WriteLine($"Supplier with id {command.Id} not found");
-            throw new Exception($"Supplier with id {command.Id} not found");
+            Console.WriteLine($"Supplier with id {command.SupplierId} not found");
+            throw new Exception($"Supplier with id {command.SupplierId} not found");
         }
     }
 }

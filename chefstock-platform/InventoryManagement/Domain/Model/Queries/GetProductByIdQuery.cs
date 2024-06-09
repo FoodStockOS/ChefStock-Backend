@@ -1,3 +1,3 @@
 ﻿namespace chefstock_platform.InventoryManagement.Domain.Model.Queries;
 
-public record GetProductByIdQuery(int Id);
+public record GetProductByIdQuery(int ProductId);

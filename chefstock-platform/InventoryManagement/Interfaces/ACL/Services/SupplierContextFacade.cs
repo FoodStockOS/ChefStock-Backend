@@ -17,7 +17,7 @@ public class SupplierContextFacade(
     {
         var createSupplierCommand = new CreateSupplierCommand(supplierName, contactName, contactEmail, phone, address);
         var supplier = await supplierCommandService.Handle(createSupplierCommand);
-        return supplier?.Id ?? 0;
+        return supplier?.SupplierId ?? 0;
     }
 
     public async Task<Supplier?> FetchSupplierById(int id)

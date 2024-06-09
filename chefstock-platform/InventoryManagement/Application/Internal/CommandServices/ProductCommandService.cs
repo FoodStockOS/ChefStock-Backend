@@ -26,7 +26,7 @@ namespace chefstock_platform.InventoryManagement.Application.Internal.CommandSer
 
         public async Task<Product?> Handle(UpdateProductCommand command)
         {
-            var product = await productRepository.GetByIdAsync(command.Id);
+            var product = await productRepository.GetByIdAsync(command.ProductId);
             if (product != null)
             {
                 product.Update(command);
@@ -36,23 +36,23 @@ namespace chefstock_platform.InventoryManagement.Application.Internal.CommandSer
             }
             else
             {
-                Console.WriteLine($"Product with id {command.Id} not found");
-                throw new Exception($"Product with id {command.Id} not found");
+                Console.WriteLine($"Product with id {command.ProductId} not found");
+                throw new Exception($"Product with id {command.ProductId} not found");
             }
         }
 
         public async Task Handle(DeleteProductCommand command)
         {
-            var product = await productRepository.GetByIdAsync(command.Id);
+            var product = await productRepository.GetByIdAsync(command.ProductId);
             if (product != null)
             {
-                await productRepository.DeleteAsync(product.Id);
+                await productRepository.DeleteAsync(product.ProductId);
                 await unitOfWork.CompleteAsync();
             }
             else
             {
-                Console.WriteLine($"Product with id {command.Id} not found");
-                throw new Exception($"Product with id {command.Id} not found");
+                Console.WriteLine($"Product with id {command.ProductId} not found");
+                throw new Exception($"Product with id {command.ProductId} not found");
             }
         }
     }

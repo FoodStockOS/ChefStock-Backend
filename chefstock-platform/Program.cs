@@ -16,6 +16,13 @@ using chefstock_platform.Shared.Domain.Repositories;
 using chefstock_platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using chefstock_platform.Shared.Infrastructure.Persistence.EFC.Repositories;
 using chefstock_platform.Shared.Interfaces.ASP.Configuration;
+using chefstock_platform.UserManagement.Application.Internal.CommandServices;
+using chefstock_platform.UserManagement.Application.Internal.QueryServices;
+using chefstock_platform.UserManagement.Domain.Repositories;
+using chefstock_platform.UserManagement.Domain.Services;
+using chefstock_platform.UserManagement.Infrastructure.Persistence.EFC.Repositories;
+using chefstock_platform.UserManagement.Interfaces.ACL;
+using chefstock_platform.UserManagement.Interfaces.ACL.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -72,6 +79,30 @@ builder.Services.AddScoped<IEmployeeCommandService, EmployeeCommandService>();
 builder.Services.AddScoped<IEmployeeQueryService, EmployeeQueryService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeContextFacade, EmployeeContextFacade>();
+
+// User Dependency Injection
+builder.Services.AddScoped<IUserCommandService, UserCommandService>();
+builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserContextFacade, UserContextFacade>();
+
+// Profile Dependency Injection
+builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
+builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IProfileContextFacade, ProfileContextFacade>();
+
+// Role Dependency Injection
+builder.Services.AddScoped<IRoleCommandService, RoleCommandService>();
+builder.Services.AddScoped<IRoleQueryService, RoleQueryService>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleContextFacade, RoleContextFacade>();
+
+// Transaction Dependency Injection
+builder.Services.AddScoped<ITransactionCommandService, TransactionCommandService>();
+builder.Services.AddScoped<ITransactionQueryService, TransactionQueryService>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionContextFacade, TransactionContextFacade>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
