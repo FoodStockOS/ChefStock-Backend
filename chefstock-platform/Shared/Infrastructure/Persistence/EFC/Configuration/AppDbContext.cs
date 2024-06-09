@@ -1,4 +1,5 @@
-﻿using chefstock_platform.Products.Domain.Model.Aggregates;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
+using chefstock_platform.InventoryManagement.Domain.Model.Entities;
 using chefstock_platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,18 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Product>().HasKey(p => p.Id);
         builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(50);
+        
+        // Category and Supplier Relationships
+        builder.Entity<Product>()
+            .HasMany(p => p.Categories)
+            .WithOne()
+            .HasForeignKey(c => c.Id);
 
+        builder.Entity<Product>()
+            .HasMany(p => p.Suppliers)
+            .WithOne()
+            .HasForeignKey(s => s.Id);
+        
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
         
