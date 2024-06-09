@@ -22,13 +22,14 @@ public class Supplier
 
     public void Update(UpdateSupplierCommand command)
     {
+        SupplierId = command.SupplierId;
         SupplierName = command.SupplierName;
         ContactName = command.ContactName;
         ContactEmail = command.ContactEmail;
         Phone = command.Phone;
         Address = command.Address;
     }
-    public int Id { get; set; }
+    public int SupplierId { get; set; }
 
     [MaxLength(50)]
     public string? SupplierName { get; set; }
@@ -45,5 +46,5 @@ public class Supplier
     [MaxLength(100)]
     public string? Address { get; set; }
 
-    public ICollection<Product?>? Products { get; set; }
+    //public ICollection<Product?>? Products { get; set; }
 }

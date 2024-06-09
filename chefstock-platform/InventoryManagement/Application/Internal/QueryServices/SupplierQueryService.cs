@@ -14,6 +14,6 @@ public class SupplierQueryService(ISupplierRepository supplierRepository) : ISup
 
     public async Task<Supplier?> Handle(GetSupplierByIdQuery query)
     {
-        return await supplierRepository.FindByIdAsync(query.Id);
+        return await supplierRepository.FindByIdAsync(query.SupplierId);
     }
 }

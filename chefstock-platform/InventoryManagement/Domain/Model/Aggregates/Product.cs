@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using chefstock_platform.InventoryManagement.Domain.Model.Commands;
 using chefstock_platform.InventoryManagement.Domain.Model.Entities;
+using chefstock_platform.UserManagement.Domain.Model.Entities;
 
 namespace chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 
@@ -11,17 +12,7 @@ public class Product
 
     }
 
-    public Product(string? name, string? description, int stock, decimal price, DateTime dueDate, int categoryId, int supplierId, ICollection<Inventory>? inventories)
-    {
-        Name = name;
-        Description = description;
-        Stock = stock;
-        Price = price;
-        DueDate = dueDate;
-        CategoryId = categoryId;
-        SupplierId = supplierId;
-        Inventories = inventories ?? new HashSet<Inventory>();
-    }
+   
 
     public Product(CreateProductCommand command)
     {
@@ -35,6 +26,7 @@ public class Product
     }
     public void Update(UpdateProductCommand command)
     {
+        ProductId = command.ProductId;
         Name = command.Name;
         Description = command.Description;
         Stock = command.Stock;
@@ -44,7 +36,7 @@ public class Product
         SupplierId = command.SupplierId;
     }
 
-    public int Id { get; set; }
+    public int ProductId { get; set; }
     
     [MaxLength(50)]
     public string? Name { get; set; }
@@ -63,7 +55,6 @@ public class Product
     public int SupplierId { get; set; }
     public Supplier? Supplier { get; set; }
     
-    public ICollection<Category> Categories { get; set; } = new List<Category>();
-    public ICollection<Supplier> Suppliers { get; set; } = new List<Supplier>();
-
+    
+    public IEnumerable<Transaction>? Transactions { get; set; }
 }

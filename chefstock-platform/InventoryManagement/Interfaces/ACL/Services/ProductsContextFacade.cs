@@ -14,7 +14,7 @@ public class ProductsContextFacade(
     {
         var createProductCommand = new CreateProductCommand(name, stock, price, description, dueDate, categoryId, supplierId);
         var product = await productCommandService.Handle(createProductCommand);
-        return product?.Id ?? 0;
+        return product?.ProductId ?? 0;
     }
 
     public async Task<Product?> FetchProductById(int id)

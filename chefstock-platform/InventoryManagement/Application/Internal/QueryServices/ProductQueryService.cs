@@ -15,6 +15,6 @@ public class ProductQueryService(IProductRepository productRepository) : IProduc
 
     public async Task<Product?> Handle(GetProductByIdQuery query)
     {
-        return await productRepository.FindByIdAsync(query.Id);
+        return await productRepository.FindByIdAsync(query.ProductId);
     }
 }
