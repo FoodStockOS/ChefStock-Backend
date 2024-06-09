@@ -26,14 +26,14 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         
         // Category and Supplier Relationships
         builder.Entity<Product>()
-            .HasOne(p => p.Category)
-            .WithMany()
-            .HasForeignKey(p => p.CategoryId);
+            .HasMany(p => p.Categories)
+            .WithOne()
+            .HasForeignKey(c => c.Id);
 
         builder.Entity<Product>()
-            .HasOne(p => p.Supplier)
-            .WithMany()
-            .HasForeignKey(p => p.SupplierId);
+            .HasMany(p => p.Suppliers)
+            .WithOne()
+            .HasForeignKey(s => s.Id);
         
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
