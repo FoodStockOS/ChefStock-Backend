@@ -1,9 +1,9 @@
 ﻿using System.Net.Mime;
+using chefstock_platform.InventoryManagement.Domain.Model.Commands;
 using chefstock_platform.InventoryManagement.Domain.Services;
-using chefstock_platform.Products.Domain.Model.Commands;
+using chefstock_platform.InventoryManagement.Interfaces.REST.Resources;
+using chefstock_platform.InventoryManagement.Interfaces.REST.Transform;
 using chefstock_platform.Products.Domain.Model.Queries;
-using chefstock_platform.Products.Interfaces.REST.Resources;
-using chefstock_platform.Products.Interfaces.REST.Transform;
 using Microsoft.AspNetCore.Mvc;
 
 namespace chefstock_platform.InventoryManagement.Interfaces.REST;

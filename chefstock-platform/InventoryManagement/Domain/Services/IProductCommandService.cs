@@ -1,5 +1,5 @@
 ﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
-using chefstock_platform.Products.Domain.Model.Commands;
+using chefstock_platform.InventoryManagement.Domain.Model.Commands;
 
 namespace chefstock_platform.InventoryManagement.Domain.Services;
 

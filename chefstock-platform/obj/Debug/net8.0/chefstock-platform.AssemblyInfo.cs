@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("chefstock-platform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0cad156cb2848d9087ce6e210f088b6c5cfbac9c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f507b7f3facc579f8c7dd3e8d7ddfbad438d774")]
 [assembly: System.Reflection.AssemblyProductAttribute("chefstock-platform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("chefstock-platform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
