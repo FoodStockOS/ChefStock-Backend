@@ -25,7 +25,7 @@ public class RestaurantController(
         var restaurant = await restaurantCommandService.Handle(createRestaurantCommand);
         if (restaurant is null) return BadRequest();
         var restaurantResource = RestaurantResourceFromEntityAssembler.ToResourceFromEntity(restaurant);
-        return CreatedAtAction(nameof(GetRestaurantById), new {restaurantId = restaurantResource.Id}, restaurantResource);
+        return CreatedAtAction(nameof(GetRestaurantById), new {restaurantId = restaurantResource.RestaurantId}, restaurantResource);
     }
 
     [HttpGet]
@@ -47,8 +47,8 @@ public class RestaurantController(
         return Ok(restaurantResource);
     }
 
-    [HttpPut("{Id:int}")]
-    public async Task<IActionResult> UpdateRestaurant(int id, UpdateRestaurantResource resource)
+    [HttpPut("{restaurantId:int}")]
+    public async Task<IActionResult> UpdateRestaurant(int restaurantId, UpdateRestaurantResource resource)
     {
         var updateRestaurantCommand = UpdateRestaurantCommandFromResourceAssembler.ToCommandFromResource(resource);
         await restaurantCommandService.Handle(updateRestaurantCommand);

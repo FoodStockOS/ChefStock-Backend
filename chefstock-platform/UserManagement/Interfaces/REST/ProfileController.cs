@@ -42,8 +42,8 @@ public class ProfileController(IProfileCommandService profileCommandService, IPr
         return Ok(profileResource);
     }
 
-    [HttpPut("{Id:int}")]
-    public async Task<IActionResult> UpdateProfile(int id, UpdateProfileResource resource)
+    [HttpPut("{profileId:int}")]
+    public async Task<IActionResult> UpdateProfile(int profileId, UpdateProfileResource resource)
     {
         var updateProfileCommand = UpdateProfileCommandFromResourceAssembler.ToCommandFromResource(resource);
         await profileCommandService.Handle(updateProfileCommand);

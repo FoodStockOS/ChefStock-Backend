@@ -24,7 +24,7 @@ public class TransactionController(
         var transaction = await transactionCommandService.Handle(createTransactionCommand);
         if (transaction is null) return BadRequest();
         var transactionResource = TransactionResourceFromEntityAssembler.ToResourceFromEntity(transaction);
-        return CreatedAtAction(nameof(GetTransactionById), new {transactionId = transactionResource.Id}, transactionResource);
+        return CreatedAtAction(nameof(GetTransactionById), new {transactionId = transactionResource.TransactionId}, transactionResource);
     }
 
     [HttpGet]
@@ -46,8 +46,8 @@ public class TransactionController(
         return Ok(transactionResource);
     }
 
-    [HttpPut("{Id:int}")]
-    public async Task<IActionResult> UpdateTransaction(int id, UpdateTransactionResource resource)
+    [HttpPut("{transactionId:int}")]
+    public async Task<IActionResult> UpdateTransaction(int transactionId, UpdateTransactionResource resource)
     {
         var updateTransactionCommand = UpdateTransactionCommandFromResourceAssembler.ToCommandFromResource(resource);
         await transactionCommandService.Handle(updateTransactionCommand);

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 
-namespace chefstock_platform.InventoryManagement.Domain.Model.Entities;
+namespace chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 
 public class Category
 {
@@ -9,6 +8,8 @@ public class Category
 
     [MaxLength(50)]
     public string? CategoryName { get; set; }
+
+    public IEnumerable<Product>? Products { get; }
 
     //public ICollection<Product>? Products { get; set; }
 }

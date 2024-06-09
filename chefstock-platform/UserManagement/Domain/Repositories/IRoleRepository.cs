@@ -6,8 +6,8 @@ namespace chefstock_platform.UserManagement.Domain.Repositories
 {
     public interface IRoleRepository : IBaseRepository<Role>
     {
-        Task<Role?> GetByIdAsync(int id);
+        Task<Role?> GetByIdAsync(int roleId);
         Task UpdateAsync(Role role);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(int roleId);
     }
 }

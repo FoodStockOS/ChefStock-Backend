@@ -7,9 +7,9 @@ namespace chefstock_platform.RestaurantManagement.Infrastructure.Persistence.EFC
 
 public class RestaurantRepository(AppDbContext context) : BaseRepository<Restaurant>(context), IRestaurantRepository
 {
-    public async Task<Restaurant?> GetByIdAsync(int id)
+    public async Task<Restaurant?> GetByIdAsync(int restaurantId)
     {
-        return await Context.Set<Restaurant>().FindAsync(id);
+        return await Context.Set<Restaurant>().FindAsync(restaurantId);
     }
 
     public async Task UpdateAsync(Restaurant restaurant)
@@ -18,9 +18,9 @@ public class RestaurantRepository(AppDbContext context) : BaseRepository<Restaur
         await Context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int restaurantId)
     {
-        var restaurant = await Context.Set<Restaurant>().FindAsync(id);
+        var restaurant = await Context.Set<Restaurant>().FindAsync(restaurantId);
         if (restaurant != null)
         {
             Context.Set<Restaurant>().Remove(restaurant);

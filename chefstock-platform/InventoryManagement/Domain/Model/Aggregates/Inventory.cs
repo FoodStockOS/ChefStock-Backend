@@ -1,7 +1,6 @@
-﻿using chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
-using chefstock_platform.RestaurantManagement.Domain.Model.Aggregates;
+﻿using chefstock_platform.RestaurantManagement.Domain.Model.Aggregates;
 
-namespace chefstock_platform.InventoryManagement.Domain.Model.Entities;
+namespace chefstock_platform.InventoryManagement.Domain.Model.Aggregates;
 
 public class Inventory
 {

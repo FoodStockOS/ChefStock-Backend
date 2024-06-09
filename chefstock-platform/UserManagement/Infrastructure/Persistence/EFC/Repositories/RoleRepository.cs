@@ -7,9 +7,9 @@ namespace chefstock_platform.UserManagement.Infrastructure.Persistence.EFC.Repos
 {
     public class RoleRepository(AppDbContext context) : BaseRepository<Role>(context), IRoleRepository
     {
-        public async Task<Role?> GetByIdAsync(int id)
+        public async Task<Role?> GetByIdAsync(int roleId)
         {
-            return await Context.Set<Role>().FindAsync(id);
+            return await Context.Set<Role>().FindAsync(roleId);
         }
 
         public async Task UpdateAsync(Role role)
@@ -18,9 +18,9 @@ namespace chefstock_platform.UserManagement.Infrastructure.Persistence.EFC.Repos
             await Context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int roleId)
         {
-            var role = await Context.Set<Role>().FindAsync(id);
+            var role = await Context.Set<Role>().FindAsync(roleId);
             if (role != null)
             {
                 Context.Set<Role>().Remove(role);

@@ -29,7 +29,7 @@ public class SupplierController : ControllerBase
         var supplier = await _supplierCommandService.Handle(createSupplierCommand);
         if (supplier is null) return BadRequest();
         var supplierResource = SupplierResourceFromEntityAssembler.ToResourceFromEntity(supplier);
-        return CreatedAtAction(nameof(GetSupplierById), new {supplierId = supplierResource.Id}, supplierResource);
+        return CreatedAtAction(nameof(GetSupplierById), new {supplierId = supplierResource.SupplierId}, supplierResource);
     }
 
     [HttpGet]
@@ -51,8 +51,8 @@ public class SupplierController : ControllerBase
         return Ok(supplierResource);
     }
 
-    [HttpPut("{Id:int}")]
-    public async Task<IActionResult> UpdateSupplier(int id, UpdateSupplierResource resource)
+    [HttpPut("{supplierId:int}")]
+    public async Task<IActionResult> UpdateSupplier(int supplierId, UpdateSupplierResource resource)
     {
         var updateSupplierCommand = UpdateSupplierCommandFromResourceAssembler.ToCommandFromResource(resource);
         await _supplierCommandService.Handle(updateSupplierCommand);

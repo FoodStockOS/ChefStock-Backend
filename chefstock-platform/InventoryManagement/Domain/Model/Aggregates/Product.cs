@@ -11,9 +11,6 @@ public class Product
     {
 
     }
-
-   
-
     public Product(CreateProductCommand command)
     {
         Name = command.Name;

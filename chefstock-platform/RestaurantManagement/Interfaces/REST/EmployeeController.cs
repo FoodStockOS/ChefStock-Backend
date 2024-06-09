@@ -23,7 +23,7 @@ public class EmployeeController(
         var employee = await employeeCommandService.Handle(createEmployeeCommand);
         if (employee is null) return BadRequest();
         var employeeResource = EmployeeResourceFromEntityAssembler.ToResourceFromEntity(employee);
-        return CreatedAtAction(nameof(GetEmployeeById), new {employeeId = employeeResource.Id}, employeeResource);
+        return CreatedAtAction(nameof(GetEmployeeById), new {employeeId = employeeResource.EmployeeId}, employeeResource);
     }
 
     [HttpGet]
@@ -45,8 +45,8 @@ public class EmployeeController(
         return Ok(employeeResource);
     }
 
-    [HttpPut("{Id:int}")]
-    public async Task<IActionResult> UpdateEmployee(int id, UpdateEmployeeResource resource)
+    [HttpPut("{employeeId:int}")]
+    public async Task<IActionResult> UpdateEmployee(int employeeId, UpdateEmployeeResource resource)
     {
         var updateEmployeeCommand = UpdateEmployeeCommandFromResourceAssembler.ToCommandFromResource(resource);
         await employeeCommandService.Handle(updateEmployeeCommand);

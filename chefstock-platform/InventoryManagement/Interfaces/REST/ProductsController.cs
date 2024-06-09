@@ -22,7 +22,7 @@ public class ProductsController(IProductCommandService productCommandService, IP
         var product = await productCommandService.Handle(createProductCommand);
         if (product is null) return BadRequest();
         var productResource = ProductResourceFromEntityAssembler.ToResourceFromEntity(product);
-        return CreatedAtAction(nameof(GetProductById), new {productId = productResource.Id}, productResource);
+        return CreatedAtAction(nameof(GetProductById), new {productId = productResource.ProductId}, productResource);
     }
 
     [HttpGet]
@@ -44,7 +44,7 @@ public class ProductsController(IProductCommandService productCommandService, IP
         return Ok(productResource);
     }
 
-    [HttpPut("{Id:int}")]
+    [HttpPut("{productId:int}")]
     public async Task<IActionResult> UpdateProduct(int id, UpdateProductResource resource)
     {
         var updateProductCommand = UpdateProductCommandFromResourceAssembler.ToCommandFromResource(resource);
