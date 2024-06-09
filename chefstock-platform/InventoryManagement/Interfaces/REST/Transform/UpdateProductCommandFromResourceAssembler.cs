@@ -1,12 +1,12 @@
-﻿using chefstock_platform.Products.Domain.Model.Commands;
-using chefstock_platform.Products.Interfaces.REST.Resources;
+﻿using chefstock_platform.InventoryManagement.Domain.Model.Commands;
+using chefstock_platform.InventoryManagement.Interfaces.REST.Resources;
 
-namespace chefstock_platform.Products.Interfaces.REST.Transform;
+namespace chefstock_platform.InventoryManagement.Interfaces.REST.Transform;
 
-public class UpdateProductCommandFromResourceAssembler
+public static class UpdateProductCommandFromResourceAssembler
 {
     public static UpdateProductCommand ToCommandFromResource(UpdateProductResource resource)
     {
-        return new UpdateProductCommand(resource.Id, resource.Name, resource.Stock, resource.Price, resource.DueDate);
+        return new UpdateProductCommand(resource.Id, resource.Name, resource.Stock, resource.Price, resource.Description, resource.DueDate, resource.CategoryId, resource.SupplierId);
     }
 }
