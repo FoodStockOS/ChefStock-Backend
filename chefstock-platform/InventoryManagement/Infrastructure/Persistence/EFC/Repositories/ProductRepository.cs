@@ -7,9 +7,9 @@ namespace chefstock_platform.InventoryManagement.Infrastructure.Persistence.EFC.
 
 public class ProductRepository(AppDbContext context) : BaseRepository<Product>(context), IProductRepository
     {
-        public async Task<Product?> GetByIdAsync(int id)
+        public async Task<Product?> GetByIdAsync(int productId)
         {
-            return await Context.Set<Product>().FindAsync(id);
+            return await Context.Set<Product>().FindAsync(productId);
         }
 
         public async Task UpdateAsync(Product product)
@@ -18,9 +18,9 @@ public class ProductRepository(AppDbContext context) : BaseRepository<Product>(c
             await Context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int productId)
         {
-            var product = await Context.Set<Product>().FindAsync(id);
+            var product = await Context.Set<Product>().FindAsync(productId);
             if (product != null)
             {
                 Context.Set<Product>().Remove(product);

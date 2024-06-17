@@ -6,15 +6,11 @@ using chefstock_platform.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace chefstock_platform.InventoryManagement.Infrastructure.Persistence.EFC.Repositories;
 
-public class SupplierRepository : BaseRepository<Supplier>, ISupplierRepository
+public class SupplierRepository(AppDbContext context) : BaseRepository<Supplier>(context), ISupplierRepository
 {
-    public SupplierRepository(AppDbContext context) : base(context)
+    public async Task<Supplier?> GetByIdAsync(int supplierId)
     {
-    }
-
-    public async Task<Supplier?> GetByIdAsync(int id)
-    {
-        return await Context.Set<Supplier>().FindAsync(id);
+        return await Context.Set<Supplier>().FindAsync(supplierId);
     }
 
     public async Task UpdateAsync(Supplier supplier)
@@ -23,9 +19,9 @@ public class SupplierRepository : BaseRepository<Supplier>, ISupplierRepository
         await Context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int supplierId)
     {
-        var supplier = await Context.Set<Supplier>().FindAsync(id);
+        var supplier = await Context.Set<Supplier>().FindAsync(supplierId);
         if (supplier != null)
         {
             Context.Set<Supplier>().Remove(supplier);

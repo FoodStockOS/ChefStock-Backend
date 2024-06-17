@@ -20,7 +20,7 @@ public class UserController(IUserCommandService userCommandService, IUserQuerySe
         var user = await userCommandService.Handle(createUserCommand);
         if (user is null) return BadRequest();
         var userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(user);
-        return CreatedAtAction(nameof(GetUserById), new {userId = userResource.Id}, userResource);
+        return CreatedAtAction(nameof(GetUserById), new {userId = userResource.UserId}, userResource);
     }
 
     [HttpGet]
@@ -42,8 +42,8 @@ public class UserController(IUserCommandService userCommandService, IUserQuerySe
         return Ok(userResource);
     }
 
-    [HttpPut("{Id:int}")]
-    public async Task<IActionResult> UpdateUser(int id, UpdateUserResource resource)
+    [HttpPut("{userId:int}")]
+    public async Task<IActionResult> UpdateUser(int userId, UpdateUserResource resource)
     {
         var updateUserCommand = UpdateUserCommandFromResourceAssembler.ToCommandFromResource(resource);
         await userCommandService.Handle(updateUserCommand);

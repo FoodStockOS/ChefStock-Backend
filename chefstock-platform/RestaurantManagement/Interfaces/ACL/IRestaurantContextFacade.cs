@@ -9,7 +9,7 @@ namespace chefstock_platform.RestaurantManagement.Interfaces.ACL
         Task<int> CreateRestaurant(string name, string location, string type);
         Task<Restaurant?> FetchRestaurantById(int id);
         Task<IEnumerable<Restaurant>> FetchAllRestaurants();
-        Task UpdateRestaurant(int id, string name, string location, string type);
-        Task DeleteRestaurant(int id);
+        Task UpdateRestaurant(int restaurantId, string name, string location, string type);
+        Task DeleteRestaurant(int restaurantId);
     }
 }

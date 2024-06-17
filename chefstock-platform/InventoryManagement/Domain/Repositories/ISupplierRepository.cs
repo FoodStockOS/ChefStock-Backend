@@ -6,7 +6,7 @@ namespace chefstock_platform.InventoryManagement.Domain.Repositories;
 
 public interface ISupplierRepository : IBaseRepository<Supplier>
 {
-    Task<Supplier?> GetByIdAsync(int id);
+    Task<Supplier?> GetByIdAsync(int supplierId);
     Task UpdateAsync(Supplier supplier);
     Task DeleteAsync(int id);
 }

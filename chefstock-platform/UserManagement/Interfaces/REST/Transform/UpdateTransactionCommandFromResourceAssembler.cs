@@ -7,6 +7,6 @@ public class UpdateTransactionCommandFromResourceAssembler
 {
     public static UpdateTransactionCommand ToCommandFromResource(UpdateTransactionResource resource)
     {
-        return new UpdateTransactionCommand(resource.Id, resource.UserId, resource.ProductId, resource.TransactionType, resource.TransactionDate, resource.Quantity);
+        return new UpdateTransactionCommand(resource.TransactionId, resource.UserId, resource.ProductId, resource.TransactionType, resource.TransactionDate, resource.Quantity);
     }
 }

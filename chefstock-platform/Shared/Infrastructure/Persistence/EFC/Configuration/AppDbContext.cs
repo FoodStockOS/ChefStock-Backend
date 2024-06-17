@@ -76,7 +76,11 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .WithOne()
             .HasForeignKey(s => s.SupplierId);
         */
-        
+        builder.Entity<Product>()
+            .HasOne(p => p.Category)
+            .WithMany(c => c.Products)
+            .HasForeignKey(p => p.CategoryId)
+            .IsRequired(false);
         // Product Relationships
         builder.Entity<Inventory>()
             .HasOne(i => i.Product)

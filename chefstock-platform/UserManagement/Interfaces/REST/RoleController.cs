@@ -44,8 +44,8 @@ public class RoleController(IRoleCommandService roleCommandService, IRoleQuerySe
         return Ok(roleResource);
     }
 
-    [HttpPut("{Id:int}")]
-    public async Task<IActionResult> UpdateRole(int id, UpdateRoleResource resource)
+    [HttpPut("{roleId:int}")]
+    public async Task<IActionResult> UpdateRole(int roleId, UpdateRoleResource resource)
     {
         var updateRoleCommand = UpdateRoleCommandFromResourceAssembler.ToCommandFromResource(resource);
         await roleCommandService.Handle(updateRoleCommand);
