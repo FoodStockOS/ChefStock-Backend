@@ -35,7 +35,7 @@ builder.Services.AddControllers(options => options.Conventions.Add(new KebabCase
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        corsBuilder => corsBuilder.WithOrigins("http://localhost:5173") // URL del frontend
+        corsBuilder => corsBuilder.WithOrigins("https://front-end-chefstock.web.app") // URL del frontend
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
