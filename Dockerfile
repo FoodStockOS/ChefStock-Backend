@@ -3,10 +3,10 @@ WORKDIR /opt/app
 EXPOSE 80
 EXPOSE 443
 
-COPY chefstock_platform/*.csproj ./
+COPY chefstock-platform/*.csproj ./
 RUN dotnet restore
 
-COPY chefstock_platform/ .
+COPY chefstock-platform/ .
 RUN dotnet publish -c Release -o out -r linux-musl-x64 --no-self-contained
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19-amd64 as runner
@@ -17,4 +17,4 @@ WORKDIR /opt/app
 RUN apk add --no-cache fontconfig
 COPY --from=builder /opt/app/out .
 
-ENTRYPOINT ["dotnet", "chefstock_platform.dll"]
+ENTRYPOINT ["dotnet", "chefstock-platform.dll"]
