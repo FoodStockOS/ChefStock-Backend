@@ -2,14 +2,15 @@
 
 public enum ECategory
 {
-    ElectronicaConsumo = 1,
-    RopaAccesorios = 2,
-    Electrodomesticos = 3,
-    AlimentosBebidas = 4,
-    HogarJardin = 5,
-    SaludBelleza = 6,
-    Automotriz = 7,
-    JuguetesJuegos = 8,
-    DeportesAireLibre = 9,
-    LibrosMedios = 10
+    Bebidas = 1,
+    FrutasVerduras = 2,
+    CarnesPescados = 3,
+    LácteosHuevos = 4,
+    PanaderíaRepostería = 5,
+    BebidasAlcohólicas = 6,
+    ConservasCongelados = 7,
+    EspeciasCondimentos = 8,
+    DulcesSnacks = 9,
+    AceitesVinagres = 10
 }
+
