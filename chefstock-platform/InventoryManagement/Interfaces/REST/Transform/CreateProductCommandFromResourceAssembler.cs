@@ -7,6 +7,6 @@ public static class CreateProductCommandFromResourceAssembler
 {
     public static CreateProductCommand ToCommandFromResource(CreateProductResource resource)
     {
-        return new CreateProductCommand(resource.Name, resource.Stock, resource.Price, resource.Description, resource.DueDate, resource.CategoryId, resource.SupplierId);
+        return new CreateProductCommand(resource.Name, resource.Stock, resource.Image, resource.Description, resource.DueDate, resource.CategoryId);
     }
 }
