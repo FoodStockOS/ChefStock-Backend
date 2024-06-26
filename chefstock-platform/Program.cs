@@ -31,12 +31,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers(options => options.Conventions.Add(new KebabCaseRouteNamingConvention()));
 
+// Add Database Connection String
+/*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");*/
+var DB_HOST = Environment.GetEnvironmentVariable("DB_HOST");
+var DB_PORT = Environment.GetEnvironmentVariable("DB_PORT");
+var DB_NAME = Environment.GetEnvironmentVariable("DB_NAME");
+var DB_USER = Environment.GetEnvironmentVariable("DB_USER");
+var DB_PASSWORD = Environment.GetEnvironmentVariable("DB_PASSWORD");
+
+
 // Add Database Connection
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString =
+    $"database={DB_NAME};host={DB_HOST};port={DB_PORT};user={DB_USER};password={DB_PASSWORD};";
 
 // Configure Database Context and Logging Levels
-builder.Services.AddDbContext<AppDbContext>(
-    options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     {
         if (connectionString != null)
             if (builder.Environment.IsDevelopment())
@@ -145,12 +155,16 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("EnableCORS");
+}
+else
+{
+    app.UseCors("EnableCORS");
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
