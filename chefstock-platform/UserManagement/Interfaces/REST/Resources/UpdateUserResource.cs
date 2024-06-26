@@ -2,4 +2,4 @@
 
 namespace chefstock_platform.UserManagement.Interfaces.REST.Resources;
 
-public record UpdateUserResource(int UserId, string FirstName, string LastName, Email Email, string Password, string Phone, string Address, int RoleId);
+public record UpdateUserResource(int UserId, string FirstName, string LastName, string Email, string Password, string Phone, string Address, int RoleId);

@@ -29,9 +29,9 @@ public class ProductsContextFacade(
         return await productQueryService.Handle(getAllProductsQuery);
     }
 
-    public async Task UpdateProduct(int id, string name, int stock, string image, string description, DateTime dueDate, int categoryId)
+    public async Task UpdateProduct(int productId,string name, int stock, string image, string description, DateTime dueDate, int categoryId)
     {
-        var updateProductCommand = new UpdateProductCommand(id, name, stock, image, description, dueDate, categoryId);
+        var updateProductCommand = new UpdateProductCommand(productId,name, stock, image, description, dueDate, categoryId);
         await productCommandService.Handle(updateProductCommand);
     }
     public async Task DeleteProduct(int id)

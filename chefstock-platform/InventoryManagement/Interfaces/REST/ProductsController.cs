@@ -24,6 +24,15 @@ public class ProductsController(IProductCommandService productCommandService, IP
         var productResource = ProductResourceFromEntityAssembler.ToResourceFromEntity(product);
         return CreatedAtAction(nameof(GetProductById), new {productId = productResource.ProductId}, productResource);
     }
+    [HttpPut("{productId:int}")]
+    public async Task<IActionResult> UpdateProduct(int productId, UpdateProductResource resource)
+    {
+        var updateProductCommand = UpdateProductCommandFromResourceAssembler.ToCommandFromResource(productId,resource);
+        var updatedProduct = await productCommandService.Handle(updateProductCommand);
+        if (updatedProduct is null) return BadRequest();
+        var productResource = ProductResourceFromEntityAssembler.ToResourceFromEntity(updatedProduct);
+        return Ok(productResource);
+    }
 
     [HttpGet]
     public async Task<IActionResult> GetAllProducts()
@@ -44,13 +53,7 @@ public class ProductsController(IProductCommandService productCommandService, IP
         return Ok(productResource);
     }
 
-    [HttpPut("{productId:int}")]
-    public async Task<IActionResult> UpdateProduct(int id, UpdateProductResource resource)
-    {
-        var updateProductCommand = UpdateProductCommandFromResourceAssembler.ToCommandFromResource(resource);
-        await productCommandService.Handle(updateProductCommand);
-        return NoContent();
-    }
+    
 
     [HttpDelete("{productId:int}")]
     public async Task<IActionResult> DeleteProduct(int productId)

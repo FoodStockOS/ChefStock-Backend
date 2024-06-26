@@ -14,7 +14,7 @@ public class User
     {
         FirstName = command.FirstName;
         LastName = command.LastName;
-        Email = command.Email;
+        Email = new Email(command.Email);
         Password = command.Password;
         Phone = command.Phone;
         Address = command.Address;
@@ -25,7 +25,7 @@ public class User
         UserId = command.UserId;
         FirstName = command.FirstName;
         LastName = command.LastName;
-        Email = command.Email;
+        Email = new Email(command.Email);
         Password = command.Password;
         Phone = command.Phone;
         Address = command.Address;

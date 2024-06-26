@@ -6,9 +6,9 @@ public record Email
 {
     private static readonly Regex EmailRegex = new Regex(@"^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$");
 
-    private Email()
+    public Email()
     {
-        
+
     }
 
     public Email(string value)
@@ -26,7 +26,7 @@ public record Email
         Value = value;
     }
 
-    private string Value { get; } = null!;
+    public string Value { get; private set; } = null!;
 
     public override string ToString() => Value;
 }

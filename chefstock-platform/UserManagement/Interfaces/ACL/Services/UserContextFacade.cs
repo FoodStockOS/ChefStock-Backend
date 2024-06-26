@@ -11,7 +11,7 @@ namespace chefstock_platform.UserManagement.Interfaces.ACL.Services
         : IUserContextFacade
     {
 
-        public async Task<int> CreateUser(string firstName, string lastName, Email email, string password, string phone, string address, int roleId)
+        public async Task<int> CreateUser(string firstName, string lastName, string email, string password, string phone, string address, int roleId)
         {
             var createUserCommand = new CreateUserCommand(firstName, lastName, email, phone, address, phone,roleId);
             var user = await userCommandService.Handle(createUserCommand);
@@ -30,7 +30,7 @@ namespace chefstock_platform.UserManagement.Interfaces.ACL.Services
             return await userQueryService.Handle(getAllUsersQuery);
         }
 
-        public async Task UpdateUser(int id, string firstName, string lastName, Email email, string password, string phone, string address, int roleId)
+        public async Task UpdateUser(int id, string firstName, string lastName, string email, string password, string phone, string address, int roleId)
         {
             var updateUserCommand = new UpdateUserCommand(id, firstName, lastName, email, phone, address, phone,roleId);
             await userCommandService.Handle(updateUserCommand);

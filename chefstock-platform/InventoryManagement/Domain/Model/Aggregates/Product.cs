@@ -55,7 +55,6 @@ public class Product
     }
     public void Update(UpdateProductCommand command)
     {
-        ProductId = command.ProductId;
         Name = command.Name;
         Description = command.Description;
         Stock = command.Stock;
