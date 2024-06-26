@@ -10,9 +10,9 @@ public class ProductsContextFacade(
     IProductQueryService productQueryService)
     : IProductsContextFacade
 {
-    public async Task<int> CreateProduct(string name, int stock, decimal price, string description, DateTime dueDate, int categoryId, int supplierId)
+    public async Task<int> CreateProduct(string name, int stock, string image, string description, DateTime dueDate, int categoryId)
     {
-        var createProductCommand = new CreateProductCommand(name, stock, price, description, dueDate, categoryId, supplierId);
+        var createProductCommand = new CreateProductCommand(name, stock, image, description, dueDate, categoryId);
         var product = await productCommandService.Handle(createProductCommand);
         return product?.ProductId ?? 0;
     }
@@ -29,9 +29,9 @@ public class ProductsContextFacade(
         return await productQueryService.Handle(getAllProductsQuery);
     }
 
-    public async Task UpdateProduct(int id, string name, int stock, decimal price, string description, DateTime dueDate, int categoryId, int supplierId)
+    public async Task UpdateProduct(int id, string name, int stock, string image, string description, DateTime dueDate, int categoryId)
     {
-        var updateProductCommand = new UpdateProductCommand(id, name, stock, price, description, dueDate, categoryId, supplierId);
+        var updateProductCommand = new UpdateProductCommand(id, name, stock, image, description, dueDate, categoryId);
         await productCommandService.Handle(updateProductCommand);
     }
     public async Task DeleteProduct(int id)
