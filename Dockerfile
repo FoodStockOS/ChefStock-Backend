@@ -3,10 +3,10 @@ WORKDIR /opt/app
 EXPOSE 80
 EXPOSE 443
 
-COPY ROCKET.RocketOrganizeBackend/*.csproj ./
+COPY chefstock_platform/*.csproj ./
 RUN dotnet restore
 
-COPY ROCKET.RocketOrganizeBackend/ .
+COPY chefstock_platform/ .
 RUN dotnet publish -c Release -o out -r linux-musl-x64 --no-self-contained
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19-amd64 as runner
