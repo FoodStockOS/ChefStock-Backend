@@ -43,11 +43,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         // Inventory Context
         builder.Entity<Inventory>().HasKey(i => i.InventoryId); 
         builder.Entity<Inventory>().Property(i => i.InventoryId).IsRequired().ValueGeneratedOnAdd();
-
-        // Category Context
-        builder.Entity<Category>().HasKey(c => c.CategoryId); 
-        builder.Entity<Category>().Property(c => c.CategoryId).IsRequired().ValueGeneratedOnAdd();
-
+        
         // Supplier Context
         builder.Entity<Supplier>().HasKey(s => s.SupplierId); 
         builder.Entity<Supplier>().Property(s => s.SupplierId).IsRequired().ValueGeneratedOnAdd();
@@ -77,10 +73,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .HasForeignKey(s => s.SupplierId);
         */
         builder.Entity<Product>()
-            .HasOne(p => p.Category)
-            .WithMany(c => c.Products)
-            .HasForeignKey(p => p.CategoryId)
-            .IsRequired(false);
+            .Property(p => p.CategoryId)
+            .HasConversion<int>();
+        
         // Product Relationships
         builder.Entity<Inventory>()
             .HasOne(i => i.Product)
