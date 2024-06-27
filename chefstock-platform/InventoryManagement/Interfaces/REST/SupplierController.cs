@@ -12,7 +12,6 @@ namespace chefstock_platform.InventoryManagement.Interfaces.REST;
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
-[EnableCors("AllowAll")]
 public class SupplierController : ControllerBase
 {
     private readonly ISupplierCommandService _supplierCommandService;

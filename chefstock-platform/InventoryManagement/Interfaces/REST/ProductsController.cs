@@ -12,7 +12,6 @@ namespace chefstock_platform.InventoryManagement.Interfaces.REST;
 
 [ApiController]
 [Route("api/v1/[controller]")]
-[EnableCors("AllowAll")]
 [Produces(MediaTypeNames.Application.Json)]
 public class ProductsController(IProductCommandService productCommandService, IProductQueryService productQueryService)
     : ControllerBase
