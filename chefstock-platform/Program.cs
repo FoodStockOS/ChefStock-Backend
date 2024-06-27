@@ -34,11 +34,14 @@ builder.Services.AddControllers(options => options.Conventions.Add(new KebabCase
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin",
-        corsBuilder => corsBuilder.WithOrigins("https://front-end-chefstock.web.app") // URL del frontend
+    options.AddPolicy("AllowAll",
+        corsBuilder => corsBuilder.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
+
+
+
 
 // Add Database Connection String
 /*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");*/
@@ -175,7 +178,9 @@ else
 
 
 // Use CORS
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowAll");
+app.UseRouting();
+
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
