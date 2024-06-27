@@ -4,12 +4,14 @@ using chefstock_platform.UserManagement.Domain.Services;
 using chefstock_platform.UserManagement.Interfaces.REST.Resources;
 using chefstock_platform.UserManagement.Interfaces.REST.Transform;
 using chefstock_platform.UserManagement.Domain.Model.Queries;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace chefstock_platform.UserManagement.Interfaces.REST;
 
 [ApiController]
 [Route("api/v1/[controller]")]
+[EnableCors("AllowAll")]
 [Produces(MediaTypeNames.Application.Json)]
 public class UserController(IUserCommandService userCommandService, IUserQueryService userQueryService): ControllerBase
 {

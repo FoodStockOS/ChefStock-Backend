@@ -4,6 +4,7 @@ using chefstock_platform.InventoryManagement.Domain.Model.Queries;
 using chefstock_platform.InventoryManagement.Domain.Services;
 using chefstock_platform.InventoryManagement.Interfaces.REST.Resources;
 using chefstock_platform.InventoryManagement.Interfaces.REST.Transform;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace chefstock_platform.InventoryManagement.Interfaces.REST;
@@ -11,6 +12,7 @@ namespace chefstock_platform.InventoryManagement.Interfaces.REST;
 
 [ApiController]
 [Route("api/v1/[controller]")]
+[EnableCors("AllowAll")]
 [Produces(MediaTypeNames.Application.Json)]
 public class ProductsController(IProductCommandService productCommandService, IProductQueryService productQueryService)
     : ControllerBase

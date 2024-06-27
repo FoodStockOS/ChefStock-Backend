@@ -167,10 +167,12 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("EnableCORS");
 }
 else
 {
     app.UseExceptionHandler("/Error");
+    app.UseCors("EnableCORS");
     app.UseSwagger();
     app.UseSwaggerUI();
 }
