@@ -53,9 +53,8 @@ var DB_PASSWORD = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
 
 // Add Database Connection
-// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionString =
-    $"database={DB_NAME};host={DB_HOST};port={DB_PORT};user={DB_USER};password={DB_PASSWORD};";
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = $"database={DB_NAME};host={DB_HOST};port={DB_PORT};user={DB_USER};password={DB_PASSWORD};";
 
 // Configure Database Context and Logging Levels
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -134,7 +133,7 @@ builder.Services.AddSwaggerGen(
         c.SwaggerDoc("v1",
             new OpenApiInfo
             {
-                Title = "chefstock_platform API",
+                Title = "Chefstock Platform API",
                 Version = "v1",
                 Description = "Chefstock Platform API",
                 TermsOfService = new Uri("https://github.com/FoodStockOS/ChefStock-Documentation"),
@@ -165,13 +164,13 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("EnableCORS");
 }
 else
 {
-    app.UseCors("EnableCORS");
+    app.UseExceptionHandler("/Error");
     app.UseSwagger();
     app.UseSwaggerUI();
 }

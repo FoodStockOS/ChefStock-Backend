@@ -149,3 +149,5 @@ E:\UPC\Repositorios\Github-repositories\ChefStock-Backend\chefstock-platform\bin
 E:\UPC\Repositorios\Github-repositories\ChefStock-Backend\chefstock-platform\bin\Debug\net8.0\zh-CN\Humanizer.resources.dll
 E:\UPC\Repositorios\Github-repositories\ChefStock-Backend\chefstock-platform\bin\Debug\net8.0\zh-Hans\Humanizer.resources.dll
 E:\UPC\Repositorios\Github-repositories\ChefStock-Backend\chefstock-platform\bin\Debug\net8.0\zh-Hant\Humanizer.resources.dll
+E:\UPC\Repositorios\Github-repositories\ChefStock-Backend\chefstock-platform\bin\Debug\net8.0\DotNetEnv.dll
+E:\UPC\Repositorios\Github-repositories\ChefStock-Backend\chefstock-platform\bin\Debug\net8.0\Sprache.dll
