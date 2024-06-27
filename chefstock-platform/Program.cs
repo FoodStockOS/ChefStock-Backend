@@ -49,6 +49,11 @@ var DB_NAME = Environment.GetEnvironmentVariable("DB_NAME");
 var DB_USER = Environment.GetEnvironmentVariable("DB_USER");
 var DB_PASSWORD = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
+Console.WriteLine($"DB_HOST: {DB_HOST}");
+Console.WriteLine($"DB_PORT: {DB_PORT}");
+Console.WriteLine($"DB_NAME: {DB_NAME}");
+Console.WriteLine($"DB_USER: {DB_USER}");
+Console.WriteLine($"DB_PASSWORD: {DB_PASSWORD}");
 
 // Add Database Connection
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
