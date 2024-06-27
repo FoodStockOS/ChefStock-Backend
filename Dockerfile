@@ -1,12 +1,20 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19-amd64
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine3.19-amd64 as builder
+WORKDIR /opt/app
+EXPOSE 80
+EXPOSE 443
 
-WORKDIR /app
-
-COPY chefstock-platform/ .
+COPY chefstock-platform/*.csproj ./
 RUN dotnet restore
 
-RUN dotnet publish -c Release -o out
+COPY chefstock-platform/ .
+RUN dotnet publish -c Release -o out -r linux-musl-x64 --no-self-contained
 
-EXPOSE 80
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19-amd64 as runner
+ENV ASPNETCORE_ENVIRONMENT="Production"
 
-ENTRYPOINT ["dotnet", "out/chefstock-platform.dll"]
+WORKDIR /opt/app
+
+RUN apk add --no-cache fontconfig
+COPY --from=builder /opt/app/out .
+
+ENTRYPOINT ["dotnet", "chefstock-platform.dll"]
