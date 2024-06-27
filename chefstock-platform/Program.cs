@@ -31,6 +31,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers(options => options.Conventions.Add(new KebabCaseRouteNamingConvention()));
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        corsBuilder => corsBuilder.WithOrigins("https://front-end-chefstock.web.app") // URL del frontend
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 // Add Database Connection String
 /*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");*/
 var DB_HOST = Environment.GetEnvironmentVariable("DB_HOST");
@@ -163,6 +172,10 @@ else
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+// Use CORS
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
