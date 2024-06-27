@@ -4,6 +4,7 @@ using chefstock_platform.InventoryManagement.Domain.Model.Queries;
 using chefstock_platform.InventoryManagement.Domain.Services;
 using chefstock_platform.InventoryManagement.Interfaces.REST.Resources;
 using chefstock_platform.InventoryManagement.Interfaces.REST.Transform;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace chefstock_platform.InventoryManagement.Interfaces.REST;
@@ -11,6 +12,7 @@ namespace chefstock_platform.InventoryManagement.Interfaces.REST;
 
 [ApiController]
 [Route("api/v1/[controller]")]
+[EnableCors("AllowAll")]
 [Produces(MediaTypeNames.Application.Json)]
 public class ProductsController(IProductCommandService productCommandService, IProductQueryService productQueryService)
     : ControllerBase
@@ -23,6 +25,15 @@ public class ProductsController(IProductCommandService productCommandService, IP
         if (product is null) return BadRequest();
         var productResource = ProductResourceFromEntityAssembler.ToResourceFromEntity(product);
         return CreatedAtAction(nameof(GetProductById), new {productId = productResource.ProductId}, productResource);
+    }
+    [HttpPut("{productId:int}")]
+    public async Task<IActionResult> UpdateProduct(int productId, UpdateProductResource resource)
+    {
+        var updateProductCommand = UpdateProductCommandFromResourceAssembler.ToCommandFromResource(productId,resource);
+        var updatedProduct = await productCommandService.Handle(updateProductCommand);
+        if (updatedProduct is null) return BadRequest();
+        var productResource = ProductResourceFromEntityAssembler.ToResourceFromEntity(updatedProduct);
+        return Ok(productResource);
     }
 
     [HttpGet]
@@ -44,13 +55,7 @@ public class ProductsController(IProductCommandService productCommandService, IP
         return Ok(productResource);
     }
 
-    [HttpPut("{productId:int}")]
-    public async Task<IActionResult> UpdateProduct(int id, UpdateProductResource resource)
-    {
-        var updateProductCommand = UpdateProductCommandFromResourceAssembler.ToCommandFromResource(resource);
-        await productCommandService.Handle(updateProductCommand);
-        return NoContent();
-    }
+    
 
     [HttpDelete("{productId:int}")]
     public async Task<IActionResult> DeleteProduct(int productId)

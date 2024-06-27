@@ -31,6 +31,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers(options => options.Conventions.Add(new KebabCaseRouteNamingConvention()));
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        corsBuilder => corsBuilder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
+
+
+
 // Add Database Connection String
 /*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");*/
 var DB_HOST = Environment.GetEnvironmentVariable("DB_HOST");
@@ -41,9 +53,8 @@ var DB_PASSWORD = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
 
 // Add Database Connection
-// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionString =
-    $"database={DB_NAME};host={DB_HOST};port={DB_PORT};user={DB_USER};password={DB_PASSWORD};";
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = $"database={DB_NAME};host={DB_HOST};port={DB_PORT};user={DB_USER};password={DB_PASSWORD};";
 
 // Configure Database Context and Logging Levels
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -122,7 +133,7 @@ builder.Services.AddSwaggerGen(
         c.SwaggerDoc("v1",
             new OpenApiInfo
             {
-                Title = "chefstock_platform API",
+                Title = "Chefstock Platform API",
                 Version = "v1",
                 Description = "Chefstock Platform API",
                 TermsOfService = new Uri("https://github.com/FoodStockOS/ChefStock-Documentation"),
@@ -153,16 +164,24 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseCors("EnableCORS");
 }
 else
 {
+    app.UseExceptionHandler("/Error");
     app.UseCors("EnableCORS");
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+// Use CORS
+app.UseCors("AllowAll");
+app.UseRouting();
+
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
