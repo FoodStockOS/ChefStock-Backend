@@ -42,22 +42,17 @@ builder.Services.AddCors(options =>
 
 
 // Add Database Connection String
-/*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");*/
+/*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var DB_HOST = Environment.GetEnvironmentVariable("DB_HOST");
 var DB_PORT = Environment.GetEnvironmentVariable("DB_PORT");
 var DB_NAME = Environment.GetEnvironmentVariable("DB_NAME");
 var DB_USER = Environment.GetEnvironmentVariable("DB_USER");
 var DB_PASSWORD = Environment.GetEnvironmentVariable("DB_PASSWORD");
-
-Console.WriteLine($"DB_HOST: {DB_HOST}");
-Console.WriteLine($"DB_PORT: {DB_PORT}");
-Console.WriteLine($"DB_NAME: {DB_NAME}");
-Console.WriteLine($"DB_USER: {DB_USER}");
-Console.WriteLine($"DB_PASSWORD: {DB_PASSWORD}");
+*/
 
 // Add Database Connection
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionString = $"database={DB_NAME};host={DB_HOST};port={DB_PORT};user={DB_USER};password={DB_PASSWORD};";
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//var connectionString = $"database={DB_NAME};host={DB_HOST};port={DB_PORT};user={DB_USER};password={DB_PASSWORD};";
 
 // Configure Database Context and Logging Levels
 builder.Services.AddDbContext<AppDbContext>(options =>
